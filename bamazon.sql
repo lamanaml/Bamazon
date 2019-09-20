@@ -8,6 +8,7 @@ create table products(
     department_name VARCHAR(50),
     price decimal(10,2) not null, 
     stock_quantity integer,
+    product_sales decimal(10,2) null,
     primary key (item_id)
 );
 
@@ -23,3 +24,10 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
     ("Eloquent Javascript", "Books", 23.00, 140), 
     ("Almond Milk", "Grocery", 3.00, 25)
     ;
+
+create table departments(
+    department_id integer not null AUTO_INCREMENT,
+    department_name VARCHAR(50),
+    over_head_cost decimal(10,2) not null, 
+    primary key (department_id)
+);
