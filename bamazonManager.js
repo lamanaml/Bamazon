@@ -61,6 +61,10 @@ function menuOptions() {
 function showAll() {// display all items for sale
   connection.query("select * from products", function(err, res) {
     if(err) throw err;
+     table = new Table({
+     head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    
+     ,colWidths: [10,20,20,20,15, 17]
+});
     for (var i = 0; i < res.length; i++) {
             table.push(
         [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]
@@ -74,8 +78,13 @@ function showAll() {// display all items for sale
 function viewLow() {// display products with low inventory
   connection.query("select * from products WHERE stock_quantity < 5", function(err, res) {
     if(err) throw err;
+    table = new Table({
+       head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    
+    ,colWidths: [10,20,20,20,15, 17]
+    });
     
     for (var i = 0; i < res.length; i++) {
+      
             table.push(
         [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]
         );
@@ -141,7 +150,8 @@ function addProducts(){
         product_name: add.product,
         department_name: add.categ,
         price: add.price,
-        stock_quantity: add.qty
+        stock_quantity: add.qty,
+        product_sales: 0.00
         }
       ],
       function(err, res) {
@@ -157,4 +167,4 @@ function addProducts(){
 menuOptions()
 
 
-SELECT department_name from products, departments WHERE department_name
+

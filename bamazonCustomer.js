@@ -28,12 +28,17 @@ var table = new Table({
 function showAll() {// display all items for sale
   connection.query("select * from products", function(err, res) {
     if(err) throw err;
+    table = new Table({
+    head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    
+    ,colWidths: [10,20,20,20,15, 17]
+    });
     for (var i = 0; i < res.length; i++) {
             table.push(
         [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity, res[i].product_sales]
         );
       }
       console.log(table.toString());
+  
       buy()
     });
 }
@@ -67,11 +72,11 @@ function custOrder (id, qty) {//checks product availablity, notifies customer ac
       var totalCost = parseFloat(res[0].price) * parseFloat(qty);
       console.log("Your total cost for " + qty + " "  + res[0].product_name + " is $" + totalCost );
       newQty = res[0].stock_quantity - qty
-   
+
     var prodSales = parseFloat(res[0].product_sales) + totalCost
     console.log("Your order is on the way, Thank you!")
     newQty = res[0].stock_quantity - qty
-     
+    
       var newAmt = connection.query("UPDATE products SET stock_quantity = " + newQty  + " , product_sales = " + prodSales + " WHERE item_id = " + id, function(err, resUpdate) {
         if(err) throw err;
       console.log(resUpdate.affectedRows + " products updated!\n");
