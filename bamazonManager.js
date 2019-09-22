@@ -18,6 +18,9 @@ connection.connect(function(err) {
   if (err) throw err;
  //console.log("connected as id " + connection.threadId);
 });
+console.log("\n--------------------------------------------------------------------------------------\n");
+  console.log("                              Welcome to Bamazon.com              ")
+console.log("\n-------------------------------------------------------------------------------------\n");
 
 var table = new Table({
     head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    

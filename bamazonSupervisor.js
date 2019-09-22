@@ -3,7 +3,6 @@ var inquirer = require("inquirer");
 var Table = require('cli-table');
 var currencyFormatter = require('currency-formatter');
 
-
 // create the connection information for the sql database
 var connection = mysql.createConnection({
   host: "localhost",
@@ -13,39 +12,60 @@ var connection = mysql.createConnection({
   database: "bamazon_db"
 });
 
-
 connection.connect(function(err) {
   if (err) throw err;
  //console.log("connected as id " + connection.threadId);
 });
 
+console.log("\n--------------------------------------------------------------------------------------\n");
+  console.log("                              Welcome to Bamazon.com              ")
+console.log("\n-------------------------------------------------------------------------------------\n");
+
+function menuOptions() {
+  inquirer.prompt({
+    name: "action",
+    type: "list",
+    message: "What would you like to do?",
+    choices: [
+      "View Sales by Department",
+      "Add new Department",
+      "Exit"
+    ]
+  }).then(function(answer) {
+    switch(answer.action) {
+      case "View Sales by Department":
+        viewSalesbyDept();
+        break;
+      case "Add new Department":
+        addDepartment();
+        break;
+      case "Exit":
+        conn.end();
+        break;
+    }
+  });
+}
 
 function viewSalesbyDept(){
-    connection.query("select products.product_sales, departments.department_name, products.department_name, departments.over_head_cost, departments.department_id from products JOIN departments ON (departments.department_name = products.department_name)", function(err, res) {
+    connection.query("SELECT products.department_name, products.department_name, products.product_sales, departments.department_name, departments.over_head_cost, departments.department_id FROM products JOIN departments WHERE departments.department_name = products.department_name GROUP by departments.department_id", function(err, res) {
         if(err) throw err;
-        console.log (res)
+        
         var table = new Table({
-            head: ['Department ID', 'Department Name', 'Overhead Sales', 'Product Sales' ]    
-        ,colWidths: [20, 20,20, 20]
+            head: ['Department ID', 'Department Name', 'Overhead Sales', 'Product Sales', "Total Profit" ]    
+        ,colWidths: [20, 20,20, 20, 20]
         });
         for (var i = 0; i < res.length; i++) {
-            table.push(
-                [res[i].department_id, res[i].department_name, res[i].over_head_sales, res[i].product_sales]
+          var total_profit = res[i].over_head_cost - res[i].product_sales
+          
+           table.push(
+                [res[i].department_id, res[i].department_name, res[i].over_head_cost, res[i].product_sales, total_profit]
             );
         };
         console.log(table.toString());
+        
     });
+    menuOptions()
 }
-
-// select  top_albums.year,
-//                 top_albums.album, 
-//         top_albums.position,
-//         top5000.song,
-//         top5000.artist
-// from top_albums
-// inner join top5000 on (top_albums.artist = top5000.artist and top_albums.year = top5000.year)
-// where (top_albums.artist = "The Beatles" and top5000.artist = "The Beatles")
-
 
 function addDepartment(){ 
   inquirer
@@ -75,16 +95,11 @@ function addDepartment(){
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " items updated!\n");
-    
       }
     )
-  });
+  });menuOptions()
 };
 
+menuOptions()
 
 
-
-viewSalesbyDept()
-
-
-// function newDept

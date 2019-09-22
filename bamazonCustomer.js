@@ -43,8 +43,6 @@ function showAll() {// display all items for sale
     });
 }
 
-
-
 function buy() { // prompt to ask customer what they would like to purchase
   inquirer.prompt([
     {
