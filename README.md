@@ -19,17 +19,29 @@ cli-table
 >The customer view first shows the customer all of the products in inventory then promps them to purchase a product.  
 ![bamazonCustomer1](assets/images/customerShowAll.png)
 
-Products are out of stock
+>Products are out of stock
 ![bamazonCustomer2](assets/images/custshowall_query_outofstock.png)
 
-Products successfully ordered
+>Products successfully ordered
 ![bamazonCustomer3](assets/images/custshowall_query_produpdate.png)
 
 ### Bamazon Manager
->Uses the Spotify NPM to get data from  Spotify.
-![BamazonManager](assets/images/spotify-this.png)
+>View Low Products
+![BamazonManager1](assets/images/managerLowInv.png)
+
+>Add replinish low inventory
+![BamazonSupervisor2](assets/images/managerReplinish.png)
+
+one small issue, it set the new inventory value to the number that you add (instead of adding to it)
+![BamazonSupervisor2](assets/images/managerReplinish2.png)
+
+>Add new products
+![BamazonSupervisor3](assets/images/movie-this.png)
       
 ### Bamazon Supervisor
->Uses the Axios NPM to get data from the OMDB API.
+>Add replinish low inventory
+![BamazonSupervisor](assets/images/movie-this.png)
+
+>Add replinish low inventory
 ![BamazonSupervisor](assets/images/movie-this.png)
      

@@ -112,6 +112,7 @@ function addInventory() {// add new inventory
   }
   ])
   .then(function(custInput) { 
+    //in order for this to do the math, I know I need to set stock_quantity = stock_quantity + custInput.qty, but I could not get it to work.
       connection.query("UPDATE products SET stock_quantity = " + custInput.qty + " WHERE item_id = " + custInput.id, function(err, resUpdate) {
         if(err) throw err;
         console.log(resUpdate.affectedRows + " products updated!\n");
@@ -147,7 +148,7 @@ function addProducts(){
   ]).then(function(add) {
     console.log("Updating inventory...\n");
     var query = connection.query(
-      "INSERT INTO products SET ? ", "SELECT department_id from departments",
+      "INSERT INTO products SET ? "
       [
         {
         product_name: add.product,
