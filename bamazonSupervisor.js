@@ -47,6 +47,7 @@ function menuOptions() {
 }
 
 function viewSalesbyDept(){
+  //I was able to add the product sales together based on department name in the workbench, but I could not get it to work in javascript  SELECT department_name, SUM(product_sales) FROM products GROUP BY department_name
    connection.query("SELECT products.department_name, products.product_sales, departments.department_name, departments.over_head_cost, departments.department_id FROM products JOIN departments WHERE departments.department_name = products.department_name GROUP by departments.department_id", function(err, res) {
         if(err) throw err;
         

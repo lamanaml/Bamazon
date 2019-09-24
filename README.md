@@ -29,19 +29,22 @@ cli-table
 >View Low Products
 ![BamazonManager1](assets/images/managerLowInv.png)
 
->Add replinish low inventory
+>Replinish low inventory
 ![BamazonSupervisor2](assets/images/managerReplinish.png)
 
-one small issue, it set the new inventory value to the number that you add (instead of adding to it)
+one small issue, it set the new inventory value to the number that you add (instead of adding to it) See comments in code
 ![BamazonSupervisor2](assets/images/managerReplinish2.png)
 
->Add new products
-![BamazonSupervisor3](assets/images/movie-this.png)
+>Add new products 
+This should add brand new products...  It worked before I added the department info which was required for the supervisor view.  Now it gives an error that departments is not defined.
+![BamazonSupervisor3](assets/images/managerAddNew.png)
       
 ### Bamazon Supervisor
->Add replinish low inventory
-![BamazonSupervisor](assets/images/movie-this.png)
+>View sales by dept
+This view should total the sales for the categories, but it only shows one product in the category.  See comments in code
+![BamazonSupervisor](assets/images/supervisorSalesbyDept.png)
 
->Add replinish low inventory
-![BamazonSupervisor](assets/images/movie-this.png)
+>Add new department
+I was able to successfully add a new department, but was not able to join it with the products table. 
+![BamazonSupervisor](assets/images/supervisorAddDept.png)
      
