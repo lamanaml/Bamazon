@@ -17,8 +17,12 @@ cli-table
 
 ### Bamazon Customer
 >The customer view first shows the customer all of the products in inventory then promps them to purchase a product.  
-![bamazonCustomer1](assets/images/custShowAll.png)
+![bamazonCustomer1](assets/images/customerShowAll.png)
+
+Products are out of stock
 ![bamazonCustomer2](assets/images/custshowall_query_outofstock.png)
+
+Products successfully ordered
 ![bamazonCustomer3](assets/images/custshowall_query_produpdate.png)
 
 ### Bamazon Manager
