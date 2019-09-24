@@ -55,7 +55,7 @@ function menuOptions() {
         addProducts();
         break;
       case "Exit":
-        conn.end();
+        connection.end();
         break;
     }
   });
@@ -70,7 +70,7 @@ function showAll() {// display all items for sale
 });
     for (var i = 0; i < res.length; i++) {
             table.push(
-        [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]
+        [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity, res[i].product_sales]
         );
       }
       console.log(table.toString());
@@ -112,7 +112,7 @@ function addInventory() {// add new inventory
   }
   ])
   .then(function(custInput) { 
-      connection.query("UPDATE products SET stock_quantity = " + custInput.qty + " WHERE item_id = " + custInput.id, function(err, resUpdate) {
+      connection.query("SELECT stock_quantity from products UPDATE products SET stock_quantity = " + (stock_quantity + custInput.qty) + " WHERE item_id = " + custInput.id, function(err, resUpdate) {
         if(err) throw err;
         console.log(resUpdate.affectedRows + " products updated!\n");
         menuOptions()
@@ -147,11 +147,12 @@ function addProducts(){
   ]).then(function(add) {
     console.log("Updating inventory...\n");
     var query = connection.query(
-      "INSERT INTO products SET ? ",
+      "INSERT INTO products SET ? ", "SELECT department_id from departments",
       [
         {
         product_name: add.product,
         department_name: add.categ,
+        department_id: departments.department_id,
         price: add.price,
         stock_quantity: add.qty,
         product_sales: 0.00

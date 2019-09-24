@@ -40,14 +40,14 @@ function menuOptions() {
         addDepartment();
         break;
       case "Exit":
-        conn.end();
+        connection.end();
         break;
     }
   });
 }
 
 function viewSalesbyDept(){
-    connection.query("SELECT products.department_name, products.department_name, products.product_sales, departments.department_name, departments.over_head_cost, departments.department_id FROM products JOIN departments WHERE departments.department_name = products.department_name GROUP by departments.department_id", function(err, res) {
+   connection.query("SELECT products.department_name, products.product_sales, departments.department_name, departments.over_head_cost, departments.department_id FROM products JOIN departments WHERE departments.department_name = products.department_name GROUP by departments.department_id", function(err, res) {
         if(err) throw err;
         
         var table = new Table({
@@ -55,7 +55,9 @@ function viewSalesbyDept(){
         ,colWidths: [20, 20,20, 20, 20]
         });
         for (var i = 0; i < res.length; i++) {
+
           var total_profit = res[i].over_head_cost - res[i].product_sales
+          console.log(total_profit)
           
            table.push(
                 [res[i].department_id, res[i].department_name, res[i].over_head_cost, res[i].product_sales, total_profit]
@@ -81,7 +83,8 @@ function addDepartment(){
       name: "overhead"
   },  
    
-        
+
+      
   ]).then(function(addDept) {
     console.log("Updating departments...\n");
     var query = connection.query(
@@ -95,9 +98,10 @@ function addDepartment(){
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " items updated!\n");
+        menuOptions()
       }
-    )
-  });menuOptions()
+    );
+  });
 };
 
 menuOptions()
