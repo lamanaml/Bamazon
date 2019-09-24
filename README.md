@@ -50,4 +50,8 @@ cli-table
 
 >>I was able to successfully add a new department, but was not able to join it with the products table. 
 ![BamazonSupervisor](assets/images/supervisorAddDept.png)
+
+> Outcome
+
+Overall, this project was very challenging but interesting.  I think my biggest issues was trying to read and update in the same function.  For example, reading the department_id from departments and adding it to a new product. 
      
