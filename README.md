@@ -32,19 +32,22 @@ cli-table
 >Replinish low inventory
 ![BamazonSupervisor2](assets/images/managerReplinish.png)
 
-one small issue, it set the new inventory value to the number that you add (instead of adding to it) See comments in code
+>>one small issue, it set the new inventory value to the number that you add (instead of adding to it) See comments in code
 ![BamazonSupervisor2](assets/images/managerReplinish2.png)
 
 >Add new products 
-This should add brand new products...  It worked before I added the department info which was required for the supervisor view.  Now it gives an error that departments is not defined.
+
+>>This should add brand new products...  It worked before I added the department info which was required for the supervisor view.  Now it gives an error that departments is not defined.
 ![BamazonSupervisor3](assets/images/managerAddNew.png)
       
 ### Bamazon Supervisor
 >View sales by dept
-This view should total the sales for the categories, but it only shows one product in the category.  See comments in code
+
+>>This view should total the sales for the categories, but it only shows saless for one product in the category.  See comments in code.
 ![BamazonSupervisor](assets/images/supervisorSalesbyDept.png)
 
 >Add new department
-I was able to successfully add a new department, but was not able to join it with the products table. 
+
+>>I was able to successfully add a new department, but was not able to join it with the products table. 
 ![BamazonSupervisor](assets/images/supervisorAddDept.png)
      
