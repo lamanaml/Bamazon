@@ -21,20 +21,20 @@ connection.connect(function(err) {
  //console.log("connected as id " + connection.threadId);
 });
 var table = new Table({
-   head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    
-   ,colWidths: [10,20,20,20,15, 17]
+   head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity' ]    
+   ,colWidths: [10,20,20,20,15]
 });
 
-function showAll() {// display all items for sale
+function showAll() {// display all items for saleS
   connection.query("select * from products", function(err, res) {
     if(err) throw err;
     table = new Table({
-    head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity', 'Product Sales' ]    
-    ,colWidths: [10,20,20,20,15, 17]
+    head: ['Item ID', 'Product Name', 'Department Name', 'Price', 'Quantity' ]    
+    ,colWidths: [10,20,20,20,15]
     });
     for (var i = 0; i < res.length; i++) {
             table.push(
-        [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity, res[i].product_sales]
+        [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]
         );
       }
       console.log(table.toString());

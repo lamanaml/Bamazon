@@ -112,7 +112,7 @@ function addInventory() {// add new inventory
   }
   ])
   .then(function(custInput) { 
-      connection.query("SELECT stock_quantity from products UPDATE products SET stock_quantity = " + (stock_quantity + custInput.qty) + " WHERE item_id = " + custInput.id, function(err, resUpdate) {
+      connection.query("UPDATE products SET stock_quantity = " + custInput.qty + " WHERE item_id = " + custInput.id, function(err, resUpdate) {
         if(err) throw err;
         console.log(resUpdate.affectedRows + " products updated!\n");
         menuOptions()

@@ -57,9 +57,7 @@ function viewSalesbyDept(){
         for (var i = 0; i < res.length; i++) {
 
           var total_profit = res[i].over_head_cost - res[i].product_sales
-          console.log(total_profit)
-          
-           table.push(
+              table.push(
                 [res[i].department_id, res[i].department_name, res[i].over_head_cost, res[i].product_sales, total_profit]
             );
         };
